@@ -15,7 +15,7 @@
 
 ---
 
-![inline](dan-tweet.png)
+![inline](images/dan-tweet.png)
 
 ---
 
@@ -140,7 +140,7 @@
 
 # Three Phases of Rendering
 
-![inline fill](three-phases.png)
+![inline fill](images/three-phases.png)
 
 ---
 
@@ -154,11 +154,11 @@
 
 ---
 
-![inline](usetransition-example-before.png)
+![inline](images/usetransition-example-before.png)
 
 ---
 
-![inline](usetransition-example-after.png)
+![inline](images/usetransition-example-after.png)
 
 ---
 
@@ -176,11 +176,11 @@
 
 ---
 
-![inline](usedeferredvalue-before.png)
+![inline](images/usedeferredvalue-before.png)
 
 ---
 
-![inline](usedeferredvalue-after.png)
+![inline](images/usedeferredvalue-after.png)
 
 ---
 
@@ -200,7 +200,7 @@
 
 # Three Phases of Rendering
 
-![inline fill](three-phases.png)
+![inline fill](images/three-phases.png)
 
 ---
 
@@ -220,7 +220,7 @@ React will do its best to not show loading states and flickering jank by deferri
 
 # <SuspenseList>
 
-![inline](suspense-list.png)
+![inline](images/suspense-list.png)
 
 ---
 
@@ -255,7 +255,7 @@ React will do its best to not show loading states and flickering jank by deferri
 
 ---
 
-![inline](dan-tweet.png)
+![inline](images/dan-tweet.png)
 
 <!-- ---
 
