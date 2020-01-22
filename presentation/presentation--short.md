@@ -9,13 +9,13 @@
 # Concurrent Mode
 
 - Announced about a year ago at ReactConf
-- Public experimental release recently
-- Lots of buzz in the React world for the last month
+- Public experimental released Late
+- Lots of buzz in the React world for a few months
 - Cause of Twitter arguments, confusion, excitement
 
 ---
 
-![inline](images/dan-tweet.png)
+![inline](images/david-k-tweet.png)
 
 ---
 
@@ -51,6 +51,10 @@
 - Once rendering begins, parts can be "interupted"
 - Analogy: version control, multiple branches
 - Unlocks enhanced rendering techniques
+
+---
+
+![inline](images/sync-vs-concurrent.jpg)
 
 ---
 

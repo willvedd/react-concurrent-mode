@@ -42,7 +42,7 @@ export function fetchWords(text) {
             return word.charAt(0).toUpperCase() + word.slice(1);
           })
       );
-    }, 750)
+    }, 400)
   );
 }
 
