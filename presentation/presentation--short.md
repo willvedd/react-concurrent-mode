@@ -219,9 +219,10 @@ React will do its best to not show loading states and flickering jank by deferri
 
 # `useDeferredValue`
 
-- Get the _currently deferred_ state value
-- "Splitting" the state
-- Useful for delaying fetches and janky renders
+- Get the _currently deferred_ state value (stale)
+- "Splitting" the state => temporarily inconsisent state
+- Configurable timeout to show conventional loader
+- Useful for reducing jarring state changes
 
 ---
 
