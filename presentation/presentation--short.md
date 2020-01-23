@@ -23,11 +23,11 @@
 
 # Facebook UX Research
 
-- **Bad**: Loaders between state-changes => flickering
-- **Bad**: Many loading states =>
-- **Good**: Keeping content on page for a bit
-- **Bad**: Slow hover and keyboard interactions
-- **OK**: Slow click and and page transitions
+- ❌ Loaders between state-changes => flickering
+- ❌ Many loading spinners in same view
+- ✅ Keeping content on page for a bit
+- ❌ Slow hover and keyboard interactions
+- 🆗 Slow click and and page transitions
 
 ---
 
@@ -97,21 +97,25 @@
 
 ## Features of Concurrent Mode
 
-- `<Suspense/>`
-- `useTransition()`
-- `useDeferredValue()`
-- `<SuspenseList/>`
-- ...and more
+- ☑ `<Suspense/>`
+- ☑ `useTransition()`
+- ☐ `useDeferredValue()`
+- ☐ `<SuspenseList/>`
+- ☐ ...and more
 
 ---
 
 ## Installation
 
-`npm install react@experimental react-dom@experimental`
+```bash
+npm install react@experimental react-dom@experimental ⚠️
+```
 
 -
 
-`ReactDOM.createRoot(document.getElementById("root")).render(<App/>)`
+```javascript
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+```
 
 ---
 
