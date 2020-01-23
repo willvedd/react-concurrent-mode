@@ -10,7 +10,7 @@
 
 ---
 
-# Historical context
+# Historical Context
 
 - Announced at ReactConf – ~year ago
 - Public **experimental** release – Late 2019
@@ -95,7 +95,7 @@
 
 ---
 
-## Features of Concurrent Mode:
+## Features of Concurrent Mode
 
 - `<Suspense/>`
 - `useTransition()`
@@ -105,7 +105,7 @@
 
 ---
 
-## Installation:
+## Installation
 
 `npm install react@experimental react-dom@experimental`
 
@@ -153,7 +153,7 @@
 
 ---
 
-# Suspension concept
+# Suspension Concept
 
 - Components can be put in a "suspended" (loading) state during asynchronous operations
 - API request, expensive sort, etc.
@@ -163,7 +163,7 @@
 
 ---
 
-# Suspension concept (cont)
+# Suspension Concept (cont)
 
 - Works by _throwing a promise_
 - Mind bending, counter-intuitive
@@ -174,7 +174,7 @@
 
 ---
 
-# When React is facing suspension:
+# When React is Facing Suspension
 
 React will do its best to not show loading states and flickering jank by deferring to old content, but not for too long
 
@@ -256,7 +256,7 @@ React will do its best to not show loading states and flickering jank by deferri
 
 ---
 
-## React devs, begin to consider:
+## React devs, begin to consider
 
 - Loading states (easy)
 - What content is essential, what can be stale/deferred (intermediate)
