@@ -104,7 +104,7 @@
 - Built-in primitive for handling loading states and "boundaries"
 - Much like error boundaries
 - Catches _suspended_ components
-- Fallback component during susepsnion (loading)
+- Fallback component during suspension (loading)
 
 ---
 
@@ -126,7 +126,7 @@
 - Works by _throwing a promise_ (mechanics not too important)
 - `fetch()` unsupported without plumbing
 - Bubbles up like an error
-- Inspired by algebraic erooffects
+- Inspired by algebraic effect
 
 ---
 
@@ -212,7 +212,7 @@ React will do its best to not show loading states and flickering jank by deferri
 
 # <SuspenseList>
 
-- Allows to orchestarte adjacent <Suspense>
+- Allows to orchestrate adjacent <Suspense>
 - Prevents jumping of page and losing scroll location as things load
 - Ordering customizable
 
@@ -233,7 +233,7 @@ React will do its best to not show loading states and flickering jank by deferri
 - Should start to consider:
   - Loading states (easy)
   - Decide what data is essential, what can be deferred (intermediate)
-  - _Ochestrating_ loading states of various components at varying levels (hard)
+  - _Orchestrating_ loading states of various components at varying levels (hard)
   - Fine-tuning timeout and transition thresholds (intermediate)
 
 ---

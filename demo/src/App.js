@@ -17,7 +17,7 @@ const initialUser = fetchUserData(0);
 
 export default ({ label }) => {
   const [startTransition, isPending] = useTransition({
-    timeoutMs: 750
+    timeoutMs: 1750
   });
 
   const [data, setData] = useState(initialUser);
@@ -47,9 +47,6 @@ export default ({ label }) => {
       <Suspense fallback={<Loader />}>
         <SuspenseList revealOrder="forwards">
           <User data={data} />
-          <br></br>
-          <br></br>
-          <User data={deferredData} />
         </SuspenseList>
       </Suspense>
     </>

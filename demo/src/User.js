@@ -15,9 +15,6 @@ export default props => {
 
       <Suspense fallback={<Loader />}>
         <UserName data={props.data} />
-      </Suspense>
-
-      <Suspense fallback={<Loader />}>
         <UserBio data={props.data} />
       </Suspense>
     </div>

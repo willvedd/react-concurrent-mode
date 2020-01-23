@@ -1,55 +1,60 @@
 # React Concurrent Mode
 
+-
+
+### Will Vedder - Sr. SWE @ Sidecar
+
 ---
 
 # ?
 
 ---
 
-# Concurrent Mode
+# Historical context
 
-- Announced about a year ago at ReactConf
-- Public experimental released Late
-- Lots of buzz in the React world for a few months
-- Cause of Twitter arguments, confusion, excitement
+- Announced at ReactConf – ~year ago
+- Public **experimental** release – Late 2019
+- Lots of buzz in the React world around release
+- Spurred Twitter debate, confusion, excitement
 
----
-
-![inline](images/david-k-tweet.png)
+![fit right](images/david-k-tweet.png)
 
 ---
 
-"Concurrent Mode is a set of new features that help React apps stay responsive and gracefully adjust to the user’s device capabilities and network speed."
+# Facebook UX Research
+
+- **Bad**: Loaders between state-changes => flickering
+- **Bad**: Many loading states =>
+- **Good**: Keeping content on page for a bit
+- **Bad**: Slow hover and keyboard interactions
+- **OK**: Slow click and and page transitions
 
 ---
 
-# Inspired by UX research
+# Official Definition
 
-- Too many loading states, spinners between state-changes
-- Keeping content on page >> loader
-- Users expect text-inputs and hover to be fast
-- Clicks and transitions forgiving if little slower
+"Concurrent Mode is a **set of new features** that help React apps stay responsive and gracefully adjust to the user’s device capabilities and network speed."
 
 ---
 
-## Blocking vs interruptible rendering
+## Blocking vs Interruptible Rendering
 
 ---
 
-## Blocking rendering
+## Blocking Rendering
 
 - Current rendering approach
 - Once rendering begins, doesn't stop
 - "Blocking rendering"
-- Analogy: before version control
 
 ---
 
-## Interruptible rendering
+## Interruptible Rendering
 
 - Concurrent mode rendering approach
-- Once rendering begins, parts can be "interupted"
-- Analogy: version control, multiple branches
+- Once rendering begins, parts can be "interrupted"
+- Workaround for JS single-thread
+- Made possible by React Fiber
 - Unlocks enhanced rendering techniques
 
 ---
@@ -58,18 +63,21 @@
 
 ---
 
-## Hypothetical
+## Hypothetical Scenario
 
 - Auto-complete text input
 - Interacts w/ expensive API
 - Sluggish as you type
 - What are some techniques?
 
+![fit right](images/hypothetical-ui.png)
+
 ---
 
-## Hypothetical solutions?
+## Hypothetical Solutions
 
-- Debounce (fetch after keystrokes idle a set time)
+- Loading spinner
+- Debounce (request after keystrokes idle for set time)
 - Throttle (limit frequency of data fetching)
 - Consider
   - slow devices (mobile, older laptops)
@@ -77,21 +85,23 @@
 
 ---
 
-# Concurrent Mode
+## Hypothetical Solutions (cont.)
 
-- This is where concurrent mode shines
-- Features that help you orchestrate loading states => better UX
+- Concurrent mode shines!
+- Native features for orchestrating loading states => better UX
+- RIP `{ isLoading ? <Loader> : <Content> }`
 - Changes the way you think of ansychronous tasks in React
 - Different paradigm, definite learning curve
 
 ---
 
-## Features:
+## Features of Concurrent Mode:
 
-- <Suspense/>
-- useTransition
-- useDeferredValue
-- <SuspenseList/>
+- `<Suspense/>`
+- `useTransition()`
+- `useDeferredValue()`
+- `<SuspenseList/>`
+- ...and more
 
 ---
 
@@ -99,112 +109,68 @@
 
 `npm install react@experimental react-dom@experimental`
 
+-
+
 `ReactDOM.createRoot(document.getElementById("root")).render(<App/>)`
 
 ---
 
-## <Suspense>
+## `<Suspense>`
 
 - Built-in primitive for handling loading states and "boundaries"
-- Much like error boundaries
+- Similar to error boundaries
 - Catches _suspended_ components
-- Fallback component during susepsnion (loading)
+- Can wrap over many/nested components in app tree
+- Fallback component during suspension (loading)
 
 ---
 
-## <Suspense>
+## `<Suspense>`
 
-```
+```javascript
 <Suspense fallback={<Loader />}>
-    <User data={quickAPIRequest()} />
-    <Posts data={slowAPIRequest()} />
+  <User data={quickAPIRequest()} />
+  <Posts data={slowAPIRequest()} />
 </Suspense>
 ```
 
 ---
 
-# Suspension (concept)
+## `<Suspense>`
 
-- Components can be put in a "suspended" state during asyncrhonous operation
+```javascript
+<Suspense fallback={<Loader />}>
+  <User data={quickAPIRequest()} />
+  <Suspense fallback={<Loader />}>
+    <Posts data={slowAPIRequest()} />
+  </Suspense>
+</Suspense>
+```
+
+---
+
+![fit loop](images/suspense-component-demo.mov)
+
+---
+
+# Suspension concept
+
+- Components can be put in a "suspended" (loading) state during asynchronous operations
 - API request, expensive sort, etc.
-- Works by _throwing a promise_ (mechanics not too important)
-- `fetch()` unsupported without plumbing
+- Works by _throwing a promise_
+- `fetch()` unsupported without special plumbing
 - Bubbles up like an error
-- Inspired by algebraic erooffects
 
 ---
 
-# When React is facing suspension:
+# Suspension concept (cont)
 
-- React will always try to find the most "complete" skeleton state.
-- Render updates in batches on a schedule
-- Will only show transition state as long as it needs to
-
----
-
-# Three Phases of Rendering
-
-![inline fill](images/three-phases.png)
-
----
-
-# useTransition
-
-- New hook
-- Allows "old" content to exist during suspension
-- Prevents flickering loading states
-- Developer defines timeout, React will fallback to loader if exceeded
-- Returns function and pending state boolean
-
----
-
-![inline](images/usetransition-example-before.png)
-
----
-
-![inline](images/usetransition-example-after.png)
-
----
-
-# Demo
-
-[https://codesandbox.io/s/sleepy-field-mohzb](useTransition demo)
-
----
-
-# useDeferredValue
-
-- Get the _currently deferred_ state value
-- "Splitting" the state
-- Useful for delaying fetches and janky renders
-
----
-
-![inline](images/usedeferredvalue-before.png)
-
----
-
-![inline](images/usedeferredvalue-after.png)
-
----
-
-# Demo
-
-[https://codesandbox.io/s/vigorous-keller-3ed2b](useDeferredValue demo)
-
----
-
-# When React is facing suspension:
-
-- React will always try to find the most "complete" skeleton state.
-- Render updates in batches on a schedule
-- Will only show transition state as long as it needs to
-
----
-
-# Three Phases of Rendering
-
-![inline fill](images/three-phases.png)
+- Works by _throwing a promise_
+- Mind bending, counter-intuitive
+- Debugging difficult with current tooling
+- React expects library developers to implement
+- Theoretically abstracted from UI devs
+- In practice, we'll see...
 
 ---
 
@@ -214,9 +180,63 @@ React will do its best to not show loading states and flickering jank by deferri
 
 ---
 
+# `useTransition`
+
+- New hook (stateful)
+- Allows stale content to exist during suspension
+- Can prevents flickering loading states
+- Developer defines timeout, React will fallback to loader if exceeded
+- Returns function and pending state boolean
+
+---
+
+### Before `useTransition()`
+
+![inline fit](images/usetransition-example-before.png)
+
+---
+
+### After `useTransition()`
+
+![inline fit](images/usetransition-example-after.png)
+
+---
+
+![fit loop](images/use-transition-demo.mov)
+
+<!--[useTransition demo](https://codesandbox.io/s/sleepy-field-mohzb)-->
+
+---
+
+# `useDeferredValue`
+
+- Get the _currently deferred_ state value
+- "Splitting" the state
+- Useful for delaying fetches and janky renders
+
+---
+
+### Before `useDeferredValue()`
+
+![inline fill](images/usedeferredvalue-before.png)
+
+---
+
+### After `useDeferredValue()`
+
+![inline fill](images/usedeferredvalue-after.png)
+
+<!--  [useDeferredValue demo](https://codesandbox.io/s/vigorous-keller-3ed2b) -->
+
+---
+
+![fit loop](images/use-deferred-value-demo.mov)
+
+<!-- ---
+
 # <SuspenseList>
 
-- Allows to orchestarte adjacent <Suspense>
+- Allows to orchestrate adjacent <Suspense>
 - Prevents jumping of page and losing scroll location as things load
 - Ordering customizable
 
@@ -224,7 +244,7 @@ React will do its best to not show loading states and flickering jank by deferri
 
 # <SuspenseList>
 
-![inline](images/suspense-list.png)
+![inline](images/suspense-list.png) -->
 
 ---
 
@@ -232,21 +252,33 @@ React will do its best to not show loading states and flickering jank by deferri
 
 ---
 
-## How it impacts devs
+![fit loop](images/jxyz-demo.mov)
 
-- Should start to consider:
-  - Loading states (easy)
-  - Decide what data is essential, what can be deferred (intermediate)
-  - _Ochestrating_ loading states of various components at varying levels (hard)
-  - Fine-tuning timeout and transition thresholds (intermediate)
+---
+
+## React devs, begin to consider:
+
+- Loading states (easy)
+- What content is essential, what can be stale/deferred (intermediate)
+- Fine-tuning timeout and transition thresholds (intermediate)
+- _Orchestrating_ loading states of various components at varying levels (hard)
 
 ---
 
 # Personal Takeaways
 
-- Arguably better for _fast_ APIs, lots of quick renders can casuse flickering
-- <Suspense> in render blocking "legacy" mode is actually a nice drop-in, will become second nature
-- Don't fully understand implementation, but excited to continue to learn
+- Welcomed set of _optional_, idiomatic features for improving UX and perceived performance
+- Arguably better for fast APIs, lots of quick fetches => jarring flickering
+- Suspension mechanics of throwing promise is concerning
+- `<Suspense>` in render blocking "legacy" mode is actually a nice drop-in, will become second nature
+
+---
+
+# Persontal Takeaways (cont)
+
+- Moderate learning curve exists
+- Maybe familiarize yourself with concepts and features, not APIs
+- Don't _fully_ understand implementation, but excited to continue learning
 
 ---
 
@@ -255,11 +287,13 @@ React will do its best to not show loading states and flickering jank by deferri
 - Concurrent mode isn't about making your apps faster\*
 - More about tricking users into _thinking_ its faster
 - These primitives and patterns offer tools to easily orchestrate loading states
-- Don't need to adopt right now, but you should in the future
+- Don't need to adopt right now, but should consider in future
 
 ---
 
-![inline](images/dan-tweet.png)
+# Tyvm
+
+![fit right](images/georgia.jpg)
 
 <!-- ---
 
