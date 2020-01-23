@@ -45,17 +45,17 @@
 
 - Current rendering approach
 - Once rendering begins, doesn't stop
-- "Blocking rendering"
+- May cause UI to freeze or stutter
 
 ---
 
 ## Interruptible Rendering
 
-- Concurrent mode rendering approach
 - Once rendering begins, parts can be "interrupted"
+- Scheduler behind the scenes, no setup required
+- Unlocks enhanced rendering techniques => concurrent mode
 - Workaround for JS single-thread
 - Made possible by React Fiber
-- Unlocks enhanced rendering techniques
 
 ---
 
@@ -89,7 +89,12 @@
 
 - Concurrent mode shines!
 - Native features for orchestrating loading states => better UX
-- RIP `{ isLoading ? <Loader> : <Content> }`
+- RIP this code:
+
+```javascript
+    { isLoading ? <Loader> : <Content> }
+```
+
 - Changes the way you think of ansychronous tasks in React
 - Different paradigm, definite learning curve
 
@@ -189,7 +194,7 @@ React will do its best to not show loading states and flickering jank by deferri
 - New hook (stateful)
 - Allows stale content to exist during suspension
 - Can prevents flickering loading states
-- Developer defines timeout, React will fallback to loader if exceeded
+- Developer defines timeout, React will fallback to loader if exceeded 🕗
 - Returns function and pending state boolean
 
 ---
