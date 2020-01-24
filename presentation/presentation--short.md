@@ -228,13 +228,13 @@ React will do its best to not show loading states and flickering jank by deferri
 
 ### Before `useDeferredValue()`
 
-![inline fill](images/usedeferredvalue-before.png)
+![inline ](images/usedeferredvalue-before.png)
 
 ---
 
 ### After `useDeferredValue()`
 
-![inline fill](images/usedeferredvalue-after.png)
+![inline ](images/usedeferredvalue-after.png)
 
 <!--  [useDeferredValue demo](https://codesandbox.io/s/vigorous-keller-3ed2b) -->
 
