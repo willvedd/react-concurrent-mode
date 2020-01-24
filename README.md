@@ -18,6 +18,8 @@ npm run start #or yarn start
 
 Presentation is a markdown file that usese [Deckset](https://www.deckset.com/) to render onscreen.
 
+[View presentation slides here](https://github.com/willvedd/react-concurrent-mode/blob/master/presentation/presentation--short.md)
+
 ## Contact
 
 If there are any errors with the demos or presentation, _please_ make a github issue or reach out to me!
