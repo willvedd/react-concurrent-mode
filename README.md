@@ -8,7 +8,8 @@ Demo is based off of [create-react-app](https://github.com/facebook/create-react
 
 To get started:
 
-```
+```bash
+cd demo
 npm install #or yarn
 npm run start #or yarn start
 ```
@@ -16,3 +17,7 @@ npm run start #or yarn start
 ## Presentation
 
 Presentation is a markdown file that usese [Deckset](https://www.deckset.com/) to render onscreen.
+
+## Contact
+
+If there are any errors with the demos or presentation, _please_ make a github issue or reach out to me!
