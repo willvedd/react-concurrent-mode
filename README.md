@@ -1,6 +1,8 @@
-# React Concurrent Mode Presentation
+# React Concurrent Mode
 
 Presentation and demo that investigates React's newly unveiled Concurrent Mode. Though still in a very experimental phase, it warrants a look to understand the feature-set and how React will fundamentally shift in the future.
+
+![fit](teaser.gif)
 
 ## Demo
 
