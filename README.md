@@ -2,13 +2,15 @@
 
 Presentation and demo that investigates React's newly unveiled Concurrent Mode. Though still in a very experimental phase, it warrants a look to understand the feature-set and how React will fundamentally shift in the future.
 
+Try the [interactive demo](https://willvedd.github.io/react-concurrent-mode)
+
 ![fit](teaser.gif)
 
 ## Demo
 
 Demo is based off of [create-react-app](https://github.com/facebook/create-react-app) starter project.
 
-To get started:
+The [interactive demo is available online](https://willvedd.github.io/react-concurrent-mode), but to run the demo locally:
 
 ```bash
 cd demo
